@@ -65,11 +65,14 @@ const client_code = (factory) => {
   console.log("");
 };
 
-console.log("Client: Testing client code with the first factory type:");
-client_code(new ConcreteFactory1());
-console.log("\n");
+const main = () => {
+  console.log("Client: Testing client code with the first factory type:");
+  client_code(new ConcreteFactory1());
+  console.log("\n");
+  console.log(
+    "Client: Testing the same client code with the second factory type:"
+  );
+  client_code(new ConcreteFactory2());
+};
 
-console.log(
-  "Client: Testing the same client code with the second factory type:"
-);
-client_code(new ConcreteFactory2());
+main();
