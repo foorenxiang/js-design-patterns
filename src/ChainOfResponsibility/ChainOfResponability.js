@@ -47,7 +47,7 @@ class DogHandler extends AbstractHandler {
 }
 
 const client_code = (handler) => {
-  for (const food in ["Nut", "Banana", "Cup of coffee"]) {
+  ["Nut", "Banana", "Cup of coffee"].forEach((food) => {
     console.log(`Client: Who wants a ${food}?`);
     const result = handler.handle(food);
     if (result) {
@@ -55,7 +55,7 @@ const client_code = (handler) => {
       return;
     }
     console.log(`${food} was left untouched`);
-  }
+  });
 };
 
 const main = () => {
