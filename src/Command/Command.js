@@ -1,5 +1,5 @@
 class Command {
-  execute = () => undefined;
+  execute = () => {};
 }
 
 class SimpleCommand extends Command {

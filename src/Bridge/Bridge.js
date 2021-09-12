@@ -14,7 +14,7 @@ ${this.implementation.operation_implementation()}`;
 }
 
 class Implementation {
-  operation_implementation = () => undefined;
+  operation_implementation = () => {};
 }
 
 class ConcreteImplementationA extends Implementation {

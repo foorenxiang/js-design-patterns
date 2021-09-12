@@ -1,8 +1,8 @@
 class Builder {
-  product = () => undefined;
-  produce_part_a = () => undefined;
-  produce_part_b = () => undefined;
-  produce_part_c = () => undefined;
+  product = () => {};
+  produce_part_a = () => {};
+  produce_part_b = () => {};
+  produce_part_c = () => {};
 }
 
 class ConcreteBuilder1 extends Builder {

@@ -1,6 +1,6 @@
 class Handler {
-  set_next = (handler) => undefined;
-  handle = (request) => undefined;
+  set_next = (handler) => {};
+  handle = (request) => {};
 }
 
 class AbstractHandler extends Handler {
