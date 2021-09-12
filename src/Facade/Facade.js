@@ -1,3 +1,21 @@
+class Facade {
+  constructor(subsystem1, subsystem2) {
+    this._subsystem1 = subsystem1 ?? new Subsystem1();
+    this._subsystem2 = subsystem2 ?? new Subsystem2();
+  }
+
+  operation() {
+    const results = [];
+    results.push("Facacde initializes subsystems:");
+    results.push(this._subsystem1.operation1());
+    results.push(this._subsystem2.operation1());
+    results.push("Facade orders subsystems to perform the action:");
+    results.push(this._subsystem1.operation_n());
+    results.push(this._subsystem2.operation_z());
+    return results.join("\n");
+  }
+}
+
 class Subsystem1 {
   operation1() {
     return "Subsystem1: Ready!";
@@ -15,24 +33,6 @@ class Subsystem2 {
 
   operation_z() {
     return "Subsystem2: Fire!";
-  }
-}
-
-class Facade {
-  constructor(subsystem1, subsystem2) {
-    this._subsystem1 = subsystem1 ?? new Subsystem1();
-    this._subsystem2 = subsystem2 ?? new Subsystem2();
-  }
-
-  operation() {
-    const results = [];
-    results.push("Facacde initializes subsystems:");
-    results.push(this._subsystem1.operation1());
-    results.push(this._subsystem2.operation1());
-    results.push("Facade orders subsystems to perform the action:");
-    results.push(this._subsystem1.operation_n());
-    results.push(this._subsystem2.operation_z());
-    return results.join("\n");
   }
 }
 
