@@ -1,6 +1,6 @@
 class Handler {
-  set_next = (handler) => {};
-  handle = (request) => {};
+  set_next(handler) {}
+  handle(request) {}
 }
 
 class AbstractHandler extends Handler {
@@ -12,49 +12,41 @@ class AbstractHandler extends Handler {
   }
 
   handle(request) {
-    if (this._next_handler) {
+    if (!!this._next_handler) {
       return this._next_handler.handle(request);
     }
   }
 }
 
 class MonkeyHandler extends AbstractHandler {
-  static handle(request) {
-    if (request == "Banana") {
-      return `Monkey: I'll eat the ${request}`;
-    }
-
-    return super.handle(request);
+  handle(request) {
+    return request === 'Banana'
+      ? `Monkey: I'll eat the ${request}`
+      : new AbstractHandler().handle(request);
   }
 }
 
 class SquirrelHandler extends AbstractHandler {
-  static handle(request) {
-    if (request == "Nut") {
-      return `Squirrel: I'll eat the ${request}`;
-    }
-    return super.handle(request);
+  handle(request) {
+    return request === 'Nut'
+      ? `Squirrel: I'll eat the ${request}`
+      : new AbstractHandler().handle(request);
   }
 }
 
 class DogHandler extends AbstractHandler {
-  static handle(request) {
-    if (request === "MeatBall") {
-      return `Dog: I'll eat the ${request}`;
-    }
-    return super.handle(request);
+  handle(request) {
+    return request === 'MeatBall'
+      ? `Dog: I'll eat the ${request}`
+      : new AbstractHandler().handle(request);
   }
 }
 
 const client_code = (handler) => {
-  ["Nut", "Banana", "Cup of coffee"].forEach((food) => {
-    console.log(`Client: Who wants a ${food}?`);
+  ['Nut', 'Banana', 'Cup of coffee'].forEach((food) => {
+    console.log(`\nClient: Who wants a ${food}?`);
     const result = handler.handle(food);
-    if (result) {
-      console.log(result);
-      return;
-    }
-    console.log(`${food} was left untouched`);
+    result ? console.log(`  ${result}`) : console.log(`  ${food} was left untouched.`);
   });
 };
 
@@ -62,14 +54,14 @@ const main = () => {
   const monkey = new MonkeyHandler();
   const squirrel = new SquirrelHandler();
   const dog = new DogHandler();
-  console.log(monkey);
-  console.log(squirrel);
-  console.log(dog);
+
   monkey.set_next(squirrel).set_next(dog);
-  console.log("Chain: Monkey > Squirrel > Dog");
+
+  console.log('Chain: Monkey > Squirrel > Dog');
   client_code(monkey);
-  console.log("");
-  print("Subchain: Squirrel > Dog");
+  console.log('\n');
+
+  console.log('Subchain: Squirrel > Dog');
   client_code(squirrel);
 };
 
